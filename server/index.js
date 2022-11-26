@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
+import categoryRoutes from './routes/category.js';
 import morgan from 'morgan';
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(morgan("dev"));
 app.use(express.json()); // if you do request with postman or using web server if you do not use express.json you can not get the data
 
 app.use("/api",authRoutes);
+app.use('/api',categoryRoutes);
 
 const port = process.env.PORT || 8000;
 
