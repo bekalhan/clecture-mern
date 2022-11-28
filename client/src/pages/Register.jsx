@@ -3,13 +3,17 @@ import {Grid,Stack, Typography,TextField,Button,Avatar} from '@mui/material';
 import BackpackIcon from '@mui/icons-material/Backpack';
 import img from '../img/img.jpeg';
 import axios from 'axios';
-import toast,{Toaster} from 'react-hot-toast';
+import toast from 'react-hot-toast';
+import {useAuth} from '../context/auth';
+import {useNavigate} from 'react-router-dom';
 
 
 function Register() {
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const [auth,setAuth] = useAuth();
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (e) =>{
@@ -23,7 +27,10 @@ function Register() {
             if(data?.error){
                 toast.error(data.error);
             }else{
+                localStorage.setItem("auth",JSON.stringify(data));
+                setAuth({...auth,token:data.token,user:data.user});
                 toast.success("Registiration success");
+                navigate('/dashboard');
             }
         }catch(err){
             console.log(err);

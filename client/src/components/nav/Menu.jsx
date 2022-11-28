@@ -9,8 +9,22 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import {NavLink} from 'react-router-dom';
+import {useAuth} from '../../context/auth';
+import {useNavigate} from 'react-router-dom';
+import toast from 'react-hot-toast';
+
 
 function Menu() {
+    const [auth,setAuth] = useAuth();
+    const navigate = useNavigate();
+
+    const logOut = () =>{
+        localStorage.removeItem('auth');
+        navigate('/login');
+        toast.success('logout success');
+    }
+
   return (
     <AppBar position='stick' sx={{marginTop:"0.6rem"}}>
         <Toolbar sx={{backgroundColor:"#ffffff",height:{lg:"120px",md:"100px",sm:"80px",sm:"100px"}}}>
@@ -24,8 +38,26 @@ function Menu() {
                             <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>Categories</Typography>
                             <ArrowDropDownIcon sx={{color:"black"}} />
                         </Stack>
-                        <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>Login</Typography>
-                        <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>Register</Typography>
+                        {!auth?.user ? (
+                        <Stack direction="row">
+                                <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>
+                                <NavLink to="/login" style={{textDecoration:"none",color:"black"}}>
+                                    Login
+                                </NavLink>  
+                            </Typography>
+                            <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>
+                                <NavLink to="/register" style={{textDecoration:"none",color:"black"}}>
+                                    Register
+                                </NavLink>  
+                            </Typography>
+                        </Stack>
+                        ):(
+                            <Stack direction="row">
+                             <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold",cursor:"pointer"}} onClick={()=>logOut()}>
+                                    Logout
+                            </Typography>
+                            </Stack>
+                        )}
                     </Stack>
                 </Grid>
                 <Grid item lg={3} md={3} sm={4} xs={12} sx={{display:{lg:"flex",md:"flex",sm:"flex",xs:"center"},justifyContent:"center"}}>
