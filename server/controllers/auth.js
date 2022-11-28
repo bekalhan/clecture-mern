@@ -20,7 +20,7 @@ export const register = async (req,res)=>{
         //check is email taken
         const existingUser = await User.findOne({email:email});
         if(existingUser){
-            return existingUser.json({error:"Email already taken"});
+            return res.json({error:"Email already taken"});
         }
         //hash password
         const hashedPassword = await hashPassword(password);

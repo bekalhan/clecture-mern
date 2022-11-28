@@ -5,6 +5,7 @@ import authRoutes from './routes/auth.js';
 import categoryRoutes from './routes/category.js';
 import productRoutes from './routes/product.js';
 import morgan from 'morgan';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URI).then(()=>{
 
 //middleware
 app.use(morgan("dev"));
+app.use(cors());
 app.use(express.json()); // if you do request with postman or using web server if you do not use express.json you can not get the data
 
 app.use("/api",authRoutes);
