@@ -23,6 +23,7 @@ function Menu() {
         localStorage.removeItem('auth');
         navigate('/login');
         toast.success('logout success');
+        window.location.reload();
     }
 
   return (
@@ -53,6 +54,11 @@ function Menu() {
                         </Stack>
                         ):(
                             <Stack direction="row">
+                            <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>
+                                <NavLink to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} style={{textDecoration:"none",color:"black"}}>
+                                    {auth?.user.name}
+                                </NavLink>  
+                            </Typography>
                              <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold",cursor:"pointer"}} onClick={()=>logOut()}>
                                     Logout
                             </Typography>

@@ -1,11 +1,12 @@
 import React,{useState} from 'react';
 import {Grid,Stack, Typography,TextField,Button,Avatar} from '@mui/material';
 import BackpackIcon from '@mui/icons-material/Backpack';
-import img from '../img/img.jpeg';
+import img2 from '../img/img2.png';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import {useAuth} from '../context/auth';
 import {useNavigate} from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 
@@ -15,7 +16,7 @@ function Login() {
     const [auth,setAuth] = useAuth();
     const navigate = useNavigate();
 
-
+    console.log("login comp : ",auth);
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -30,13 +31,15 @@ function Login() {
                 localStorage.setItem("auth",JSON.stringify(data));
                 setAuth({...auth,token:data.token,user:data.user});
                 toast.success("Login success");
-                navigate('/dashboard');
+                console.log("auth login :",auth);
+                navigate(`/dashboard/${data?.user?.role === 1 ? 'admin' : 'user'}`);
             }
         }catch(err){
-            console.log(err);
             toast.error("Login error try again");
         }
     }
+
+    if(auth?.user) return navigate('/');
 
   return (
     <Grid container>
@@ -94,7 +97,7 @@ function Login() {
             </Grid>
         </Grid>
         <Grid item lg={6} md={6} sx={{marginTop:{lg:"2rem"},padding:3,display:{lg:"block",md:"block",sm:"none",xs:"none"}}}>
-            <Avatar variant='square' sx={{width:"100%",height:"100%"}} src={img} />
+            <Avatar variant='square' sx={{width:"100%",height:"100%"}} src={img2} />
         </Grid>
     </Grid>
   )
