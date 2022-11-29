@@ -12,12 +12,11 @@ import NotFound from './components/notfound/NotFound';
 import {useAuth} from './context/auth';
 import {Grid} from '@mui/material';
 import React from 'react';
+import AdminCategory from './pages/admin/Category';
 
 
 function App() {
   const [auth,setAuth] = useAuth();
-
-  console.log("auth :",auth);
 
   return (
     <BrowserRouter>
@@ -37,6 +36,7 @@ function App() {
                 </Route>
                 <Route path='/dashboard' element={<AdminRoute />}>
                     <Route path="admin" element={<AdminDashboard />} />
+                    <Route path="admin/category" element={<AdminCategory />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -54,6 +54,7 @@ function App() {
           </Route>
           <Route path='/dashboard' element={<AdminRoute />}>
               <Route path="admin" element={<AdminDashboard />} />
+              <Route path="admin/category" element={<AdminCategory />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

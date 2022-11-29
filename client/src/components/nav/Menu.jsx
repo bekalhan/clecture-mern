@@ -38,8 +38,6 @@ function Menu() {
         window.location.reload();
     }
 
-    console.log("menu auth :",auth);
-
   return (
     <Box sx={{width:"100%"}}>
         {auth?.user?.role === 1 ?(
