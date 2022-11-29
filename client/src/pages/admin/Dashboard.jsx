@@ -2,6 +2,9 @@ import React from 'react';
 import {Box,Stack, Typography} from '@mui/material';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import {NavLink} from 'react-router-dom';
 
 
@@ -22,6 +25,30 @@ function AdminDashboard() {
               <PrecisionManufacturingIcon sx={{backgroundColor:"#f6817a",color:"white",fontSize:{lg:"140px",md:"110px",sm:"80px",xs:"70px"}}} />
               <Typography sx={{marginTop:{lg:"0.3em",md:"0.2em",sm:"0.2em"},marginLeft:{lg:"1em",md:"0.5em",sm:"0.4em",xs:"0.3em"},fontSize:{lg:"24px",md:"20px"},fontWeight:"100"}}>
                 Product
+              </Typography>
+          </NavLink>
+          </Stack>
+          <Stack direction="column" sx={{marginLeft:{lg:"3rem",md:"3rem",sm:"3rem",xs:"3rem"},cursor:"pointer"}}>
+          <NavLink to="/dashboard/admin/product-list" style={{textDecoration:"none",color:"black"}}>
+              <FactCheckIcon sx={{backgroundColor:"#f6817a",color:"white",fontSize:{lg:"140px",md:"110px",sm:"80px",xs:"70px"}}} />
+              <Typography sx={{marginTop:{lg:"0.3em",md:"0.2em",sm:"0.2em"},marginLeft:{lg:"",md:"0.5em",sm:"0.4em",xs:"0.3em"},fontSize:{lg:"24px",md:"20px"},fontWeight:"100"}}>
+                Product List
+              </Typography>
+          </NavLink>
+          </Stack>
+          <Stack direction="column" sx={{marginLeft:{lg:"3rem",md:"3rem",sm:"3rem",xs:"3rem"},cursor:"pointer"}}>
+          <NavLink to="/dashboard/admin/product" style={{textDecoration:"none",color:"black"}}>
+              <LocalShippingIcon sx={{backgroundColor:"#44a5e0",color:"white",fontSize:{lg:"140px",md:"110px",sm:"80px",xs:"70px"}}} />
+              <Typography sx={{marginTop:{lg:"0.3em",md:"0.2em",sm:"0.2em"},marginLeft:{lg:"1.5em",md:"0.5em",sm:"0.4em",xs:"0.3em"},fontSize:{lg:"24px",md:"20px"},fontWeight:"100"}}>
+                Order 
+              </Typography>
+          </NavLink>
+          </Stack>
+          <Stack direction="column" sx={{marginLeft:{lg:"3rem",md:"3rem",sm:"3rem",xs:"3rem"},cursor:"pointer"}}>
+          <NavLink to="/dashboard/admin/product" style={{textDecoration:"none",color:"black"}}>
+              <AccountBoxIcon sx={{backgroundColor:"#b089c8",color:"white",fontSize:{lg:"140px",md:"110px",sm:"80px",xs:"70px"}}} />
+              <Typography sx={{marginTop:{lg:"0.3em",md:"0.2em",sm:"0.2em"},marginLeft:{lg:"1.5em",md:"0.5em",sm:"0.4em",xs:"0.3em"},fontSize:{lg:"24px",md:"20px"},fontWeight:"100"}}>
+                Profile 
               </Typography>
           </NavLink>
           </Stack>

@@ -13,6 +13,8 @@ import {useAuth} from './context/auth';
 import {Grid} from '@mui/material';
 import React from 'react';
 import AdminCategory from './pages/admin/Category';
+import AdminProduct from './pages/admin/Product';
+import ProductList from './pages/admin/ProductList';
 
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
                 <Route path='/dashboard' element={<AdminRoute />}>
                     <Route path="admin" element={<AdminDashboard />} />
                     <Route path="admin/category" element={<AdminCategory />} />
+                    <Route path="admin/product" element={<AdminProduct />} />
+                    <Route path='admin/product-list' element={<ProductList/>} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -55,6 +59,8 @@ function App() {
           <Route path='/dashboard' element={<AdminRoute />}>
               <Route path="admin" element={<AdminDashboard />} />
               <Route path="admin/category" element={<AdminCategory />} />
+              <Route path="admin/product" element={<AdminProduct />} />
+              <Route path='admin/product-list' element={<ProductList/>} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
