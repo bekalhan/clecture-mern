@@ -9,24 +9,56 @@ import {Toaster} from 'react-hot-toast';
 import PrivateRoute from './components/routes/PrivateRoute';
 import AdminRoute from './components/routes/AdminRoute';
 import NotFound from './components/notfound/NotFound';
+import {useAuth} from './context/auth';
+import {Grid} from '@mui/material';
+import React from 'react';
+
 
 function App() {
+  const [auth,setAuth] = useAuth();
+
+  console.log("auth :",auth);
+
   return (
     <BrowserRouter>
     <Toaster />
+    {auth?.user?.role === 1 ? (
+      <Grid container>
+        <Grid item lg={3} md={3} sm={3} xs={2} sx={{backgroundColor:"#ffffff"}}>
+          <Menu />
+        </Grid>
+          <Grid item lg={9} md={9} sm={9} xs={10} sx={{backgroundColor:"#eeeeee"}}>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path='/dashboard' element={<PrivateRoute />}>
+                    <Route path='user' element={<Dashboard />} />
+                </Route>
+                <Route path='/dashboard' element={<AdminRoute />}>
+                    <Route path="admin" element={<AdminDashboard />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+           </Grid>
+      </Grid>
+    ):(
+    <React.Fragment>
       <Menu />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/dashboard' element={<PrivateRoute />}>
-            <Route path='user' element={<Dashboard />} />
-        </Route>
-        <Route path='/dashboard' element={<AdminRoute />}>
-            <Route path="admin" element={<AdminDashboard />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path='/dashboard' element={<PrivateRoute />}>
+              <Route path='user' element={<Dashboard />} />
+          </Route>
+          <Route path='/dashboard' element={<AdminRoute />}>
+              <Route path="admin" element={<AdminDashboard />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+    </React.Fragment>
+    )}
     </BrowserRouter>
   );
 }
