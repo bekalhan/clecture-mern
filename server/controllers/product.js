@@ -4,9 +4,13 @@ import slugify from 'slugify';
 
 export const create = async (req,res)=>{
     try{
+      console.log("girdiiii");
         console.log(req.fields);
         const {name,description,price,category,quantity,shipping} = req.fields;
+        console.log("geldiii");
+        console.log(req.files);
         const {photo} = req.files;
+
 
         //validation
         switch(true){
@@ -84,8 +88,6 @@ export const remove = async (req, res) => {
 
   export const update = async (req, res) => {
     try {
-      // console.log(req.fields);
-      // console.log(req.files);
       const { name, description, price, category, quantity, shipping } =
         req.fields;
       const { photo } = req.files;
