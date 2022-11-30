@@ -10,19 +10,51 @@ import Badge from '@mui/material/Badge';
 function Home() {
     const [auth,setAuth] = useAuth();
     const [products,setProducts] = useState([]);
+    const [total,setTotal] = useState(0);
+    const [page,setPage] = useState(1);
+    const [loading,setLoading] = useState(false);
 
     useEffect(()=>{
       loadProducts();
+      getTotal();
     },[]);
+
+    useEffect(()=>{
+      if(page===1) return;
+      loadMore();
+    },[page]);
+
+    const getTotal = async () =>{
+      try{
+        const {data} = await axios.get("http://localhost:8000/api/products-count");
+        setTotal(data);
+      }catch(err){
+        console.log(err);
+      }
+    }
 
     const loadProducts = async () =>{
       try{
-        const {data} = await axios.get('http://localhost:8000/api/products');
+        const {data} = await axios.get(`http://localhost:8000/api/list-products/${page}`);
         setProducts(data);
       }catch(err){
         console.log(err);
       }
     };
+
+    const loadMore = async () =>{
+      try{
+        setLoading(true);
+        const {data} = await axios.get(`http://localhost:8000/api/list-products/${page}`);
+        setProducts([...products,...data]);
+        setLoading(false);
+      }catch(err){
+        console.log(err);
+        setLoading(false);
+      }
+    };
+
+
 
     const arr = [...products];
     const  sortedBySold = arr?.sort((a,b)=>(a.sold < b.sold? 1 : -1));
@@ -68,6 +100,21 @@ function Home() {
                 </Grid>
               ))}
             </Grid>
+            <Box sx={{display:"flex",justifyContent:"center",marginTop:"2rem",marginBottom:"2rem"}}>
+            {products && products.length < total && (
+            <Button
+            variant='contained'
+              disabled={loading}
+              onClick={(e) => {
+                e.preventDefault();
+                setPage(page + 1);
+              }}
+              sx={{backgroundColor:"orange"}}
+            >
+              {loading ? "Loading..." : "Load more"}
+            </Button>
+          )}
+            </Box>
           </Grid>
           <Grid item lg={6}>
             <Grid container>
