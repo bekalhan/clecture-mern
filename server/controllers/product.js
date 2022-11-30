@@ -85,8 +85,7 @@ export const remove = async (req, res) => {
     }
   };
 
-
-  export const update = async (req, res) => {
+export const update = async (req, res) => {
     try {
       const { name, description, price, category, quantity, shipping } =
         req.fields;
@@ -132,4 +131,21 @@ export const remove = async (req, res) => {
       return res.status(400).json(err.message);
     }
   };
+
+export const filteredProducts = async (req,res)=>{
+  try{
+    const { checked, radio } = req.body;
+
+    console.log(radio[0]);
+
+    let args = {};
+    if (checked.length > 0) args.category = checked;
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+
+    const products = await Product.find(args);
+    res.json(products);
+  }catch(err){
+    console.log(err);
+  }
+}
   
