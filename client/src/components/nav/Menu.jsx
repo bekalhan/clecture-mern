@@ -122,7 +122,9 @@ function Menu() {
          </Grid>
          <Grid item lg={4} md={4} sm={4} sx={{backgroundColor:"",display:"flex",justifyContent:"flex-start",display:{lg:"flex",md:"flex",sm:"none",xs:"none"}}}>
              <Stack direction="row" sx={{marginTop:{lg:"3em",md:"2em"}}}>
+                <NavLink to="/shop" style={{textDecoration:"none",color:"black"}}>
                  <Typography sx={{color:"black",marginLeft:{lg:"3em",md:"2em"},fontWeight:"bold"}}>Shop</Typography>
+                 </NavLink>
                  <Stack direction="row">
                      <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>Categories</Typography>
                      <ArrowDropDownIcon sx={{color:"black"}} />
