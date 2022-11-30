@@ -7,11 +7,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {Box,Stack,Grid, Typography,TextField, Button, Avatar} from '@mui/material';
 import {useAuth} from '../../context/auth';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,useParams} from 'react-router-dom';
 
 
 
-function Product() {
+function ProductUpdate() {
     const [auth,setAuth] = useAuth();
     const [categories,setCategories] = useState([]);
     const [photo,setPhoto] = useState("");
@@ -21,8 +21,10 @@ function Product() {
     const [category,setCategory] = useState(""); //
     const [shipping,setShipping] = useState(""); //
     const [quantity,setQuantity] = useState("");
+    const [id,setId] = useState("");
 
     const navigate = useNavigate();
+    const params = useParams();
 
 
     useEffect(()=>{
@@ -31,12 +33,20 @@ function Product() {
 
     const loadCategories = async () =>{
         try{
-            const {data} = await axios.get("http://localhost:8000/api/categories");
-            setCategories(data);
+            const {data} = await axios.get(`http://localhost:8000/api/products/${params.slug}`);
+            setName(data[0].name);
+            setDescription(data[0].description);
+            setPrice(data[0].price);
+            setCategory(data[0].category._id);
+            setShipping(data[0].shipping);
+            setQuantity(data[0].quantity);
+            setId(data[0]._id);
         }catch(err){
             console.log(err);
         }
     }
+
+    console.log("name : ",name);
 
     const handleChange = (event) =>{
         setCategory(event.target.value);
@@ -50,7 +60,7 @@ function Product() {
         e.preventDefault();
         try{
             const productData = new FormData();
-            productData.append("photo",photo);
+            photo && productData.append("photo",photo);
             productData.append("name",name);
             productData.append("description",description);
             productData.append("price",price);
@@ -60,7 +70,7 @@ function Product() {
 
             console.log([...productData]);
 
-            const {data} = await axios.post("http://localhost:8000/api/product",productData,{
+            const {data} = await axios.put(`http://localhost:8000/api/product/${id}`,productData,{
                 headers:{
                     Authorization:auth?.token
                 }
@@ -69,15 +79,33 @@ function Product() {
             if(data?.error){
                 toast.error(data?.error);
             }else{
-                toast.success("Product created successfully");
+                toast.success("Product updated successfully");
                 navigate('/dashboard/admin/product-list');
             }
 
         }catch(err){
             console.log("err");
-            toast.error("Create product failed");
+            toast.error("Update product failed");
         }
     }
+
+    const handleDelete = async () =>{
+        try{
+            const {data} = await axios.delete(`http://localhost:8000/api/product/${id}`,{
+                headers:{
+                    Authorization : auth?.token
+                }
+            });
+            if(data?.error){
+                toast.error(data?.erro);
+            }else{
+                toast.success("Product deleted successfully");
+                navigate('/dashboard/admin/product-list');
+            }
+        }catch(err){
+            toast.error("Product deleted failed");
+        }
+    };
 
 
 
@@ -219,7 +247,10 @@ function Product() {
             </Grid>
             <Grid container sx={{marginTop:"2em"}}>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <Button sx={{width:"100%"}} variant='outlined' type='submit'>Create New Product</Button>
+                    <Button sx={{width:"100%"}} variant='outlined' type='submit'>Update Product</Button>
+                </Grid>
+                <Grid item lg={12} md={12} sm={12} xs={12} sx={{marginTop:"1em"}}>
+                    <Button sx={{width:"100%"}} variant='outlined' onClick={()=>{handleDelete()}}>Delete Product</Button>
                 </Grid>
             </Grid>
         </form>
@@ -228,4 +259,4 @@ function Product() {
   )
 }
 
-export default Product
+export default ProductUpdate;

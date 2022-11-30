@@ -4,6 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import DateFormatter from '../utils/DateFormatter';
+import {NavLink} from 'react-router-dom';
+
 
 function ProductList() {
     const [productList,setProductList] = useState([]);
@@ -26,6 +28,7 @@ function ProductList() {
         <Grid container spacing={3} sx={{padding:6}}>
             {productList?.map((product)=>(
             <Grid item lg={6} sx={{marginTop:"3em",width:"100%",height:"100%",backgroundColor:"#ffffff"}}>
+            <NavLink to={`/dashboard/admin/product/update/${product?.slug}`} style={{textDecoration:"none",color:"black"}}>
                 <Stack direction="column">
                      <Avatar variant="square" src={`http://localhost:8000/api/product/photo/${product._id}`} sx={{width:"100%",height:"100%"}} />
                     <Stack direction="row" sx={{display:"flex",justifyContent:"space-between",padding:4}}>
@@ -43,6 +46,7 @@ function ProductList() {
                         Release Date :   <DateFormatter date={product?.createdAt} />
                     </Typography>
                 </Stack>
+                </NavLink>
             </Grid>
             ))}
             

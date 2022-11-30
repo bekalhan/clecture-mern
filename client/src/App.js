@@ -15,6 +15,7 @@ import React from 'react';
 import AdminCategory from './pages/admin/Category';
 import AdminProduct from './pages/admin/Product';
 import ProductList from './pages/admin/ProductList';
+import ProductUpdate from './pages/admin/ProductUpdate';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
                     <Route path="admin/category" element={<AdminCategory />} />
                     <Route path="admin/product" element={<AdminProduct />} />
                     <Route path='admin/product-list' element={<ProductList/>} />
+                    <Route path="admin/product/update/:slug" element={<ProductUpdate/>} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -61,6 +63,7 @@ function App() {
               <Route path="admin/category" element={<AdminCategory />} />
               <Route path="admin/product" element={<AdminProduct />} />
               <Route path='admin/product-list' element={<ProductList/>} />
+              <Route path="admin/product/update/:slug" element={<ProductUpdate/>} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
