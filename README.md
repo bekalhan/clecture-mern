@@ -15,6 +15,19 @@ _add cart functionality and payment page_
 
 <img width="1431" alt="Screen Shot 2022-12-01 at 12 55 11" src="https://user-images.githubusercontent.com/77151270/205159870-9bcfcae3-d01d-4c7c-9366-467eca3f4087.png">
 
+_you can also update your profile_
+
+<img width="1423" alt="Screen Shot 2022-12-01 at 12 54 52" src="https://user-images.githubusercontent.com/77151270/205160205-0135562b-d989-40ab-b14c-dfeec2e503bb.png">
+
+**Let's look at admin page**
+
+_you can crud operations for category , product and see all list also you can see orders_
+
+<img width="1419" alt="Screen Shot 2022-12-01 at 12 55 40" src="https://user-images.githubusercontent.com/77151270/205160304-b8535dec-2f5c-46d2-9719-0d87216b85a3.png">
+
+
+
+
 
 
 
