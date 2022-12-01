@@ -1,4 +1,4 @@
-Welcome to mern stack e-commerce app let me recap all project
+**Welcome to mern stack e-commerce application let me recap all project**
 
 All lectures inside this page 
 
