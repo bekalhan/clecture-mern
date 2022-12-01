@@ -16,7 +16,9 @@ import AdminCategory from './pages/admin/Category';
 import AdminProduct from './pages/admin/Product';
 import ProductList from './pages/admin/ProductList';
 import ProductUpdate from './pages/admin/ProductUpdate';
+import Search from './pages/Search';
 import Shop from './pages/Shop';
+import ProductView from './pages/ProductView';
 
 function App() {
   const [auth,setAuth] = useAuth();
@@ -35,6 +37,8 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/shop" element={<Shop />} />
+                <Route path='/search' element={<Search />} />
+                <Route path="/product/:slug" element={<ProductView/>} />
                 <Route path='/dashboard' element={<PrivateRoute />}>
                     <Route path='user' element={<Dashboard />} />
                 </Route>
@@ -57,6 +61,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path='/search' element={<Search />} />
+          <Route path="/product/:slug" element={<ProductView/>} />
           <Route path='/dashboard' element={<PrivateRoute />}>
               <Route path='user' element={<Dashboard />} />
           </Route>

@@ -9,6 +9,8 @@ import {prices} from '../prices';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
+import {NavLink} from 'react-router-dom';
+
 
 function Shop() {
     const [categories, setCategories] = useState([]);
@@ -147,7 +149,11 @@ function Shop() {
                                             <DateFormatter date={product?.createdAt} />
                                           </Typography>
                                           <Stack direction="row" sx={{paddingLeft:8,paddingRight:10,paddingTop:4}}>
-                                              <Button variant='contained' sx={{width:"50%"}}>View Product</Button>
+                                                <Button variant='contained' sx={{width:"50%"}}>
+                                                <NavLink to={`/product/${product.slug}`} style={{textDecoration:"none",color:"white"}}>
+                                                    View Product
+                                                    </NavLink>
+                                                </Button>
                                               <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}}>Add to Cart</Button>
                                           </Stack>
                                         </Stack>

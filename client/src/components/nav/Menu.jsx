@@ -6,8 +6,6 @@ import {
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import BackpackIcon from '@mui/icons-material/Backpack';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import SearchIcon from '@mui/icons-material/Search';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {NavLink} from 'react-router-dom';
 import {useAuth} from '../../context/auth';
@@ -24,6 +22,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShopIcon from '@mui/icons-material/Shop';
 import CategoryIcon from '@mui/icons-material/Category';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Search from '../forms/Search';
 
 
 
@@ -126,8 +125,9 @@ function Menu() {
                  <Typography sx={{color:"black",marginLeft:{lg:"3em",md:"2em"},fontWeight:"bold"}}>Shop</Typography>
                  </NavLink>
                  <Stack direction="row">
-                     <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>Categories</Typography>
-                     <ArrowDropDownIcon sx={{color:"black"}} />
+                    <NavLink to="/" style={{textDecoration:"none",color:"black"}}>
+                        <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>Home</Typography>
+                    </NavLink>
                  </Stack>
                  {!auth?.user ? (
                  <Stack direction="row">
@@ -168,25 +168,7 @@ function Menu() {
              <Stack direction="row" sx={{marginTop:{lg:"2.5em",md:"2em",sm:"0.5em"}}}>
                  <FavoriteIcon sx={{color:"#fd5e35",fontSize:{lg:"32px",md:"24px",sm:"32px"}}} />
                  <PermIdentityIcon sx={{color:"black",fontSize:{lg:"32px",md:"24px",sm:"32px"},marginLeft:{lg:"0.3em",md:"0.2em",sm:"0.3em"}}} />
-
-                 <Paper
-                     component="form"
-                     sx={{display: 'flex', alignItems: 'center', width: 400,marginLeft:{lg:"3em",md:"2em",sm:"3em"},borderRadius:"30px"}}
-                     >
-                     <IconButton sx={{ p: '10px' }} aria-label="menu">
-                         <SearchIcon />
-                     </IconButton>
-                     <InputBase
-                         sx={{ ml: 1, flex: 1 }}
-                         placeholder="Search"
-                         inputProps={{ 'aria-label': 'search google maps' }}
-                         size="small"
-                     />
-                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                     <IconButton  sx={{ p: '10px',color:"black" }} aria-label="directions">
-                         <ShoppingBasketIcon />
-                     </IconButton>
-                     </Paper>
+                <Search />
              </Stack>
          </Grid>
      </Grid>

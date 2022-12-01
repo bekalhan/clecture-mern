@@ -5,6 +5,7 @@ import DateFormatter from './utils/DateFormatter';
 import {Avatar, Box, Button, Grid, Typography} from '@mui/material';
 import { Stack } from '@mui/system';
 import Badge from '@mui/material/Badge';
+import {NavLink} from 'react-router-dom';
 
 
 function Home() {
@@ -93,7 +94,11 @@ function Home() {
                         <DateFormatter date={product?.createdAt} />
                       </Typography>
                       <Stack direction="row" sx={{paddingLeft:8,paddingRight:10,paddingTop:4}}>
-                          <Button variant='contained' sx={{width:"50%"}}>View Product</Button>
+                          <Button variant='contained' sx={{width:"50%"}}>
+                           <NavLink to={`/product/${product.slug}`} style={{textDecoration:"none",color:"white"}}>
+                               View Product
+                            </NavLink>
+                          </Button>
                           <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}}>Add to Cart</Button>
                       </Stack>
                     </Stack>
