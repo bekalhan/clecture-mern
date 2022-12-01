@@ -1,17 +1,23 @@
 import React from 'react';
-import {Paper,Divider,InputBase,IconButton, Button} from '@mui/material';
+import {Paper,Divider,InputBase,IconButton, Button, Badge} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useState } from 'react';
 import axios from 'axios';
 import {useSearch} from '../../context/search';
 import {useNavigate} from 'react-router-dom';
+import {useCart} from '../../context/cart';
+import {NavLink} from 'react-router-dom';
+
+
 
 function Search() {
     const [keywords,setKeywords] = useState('');
     const [result,setResults] = useState([]);
     //hook
     const [values,setValues] = useSearch();
+    const [cart,setCart] = useCart();
+
 
     const navigate = useNavigate();
 
@@ -43,7 +49,11 @@ function Search() {
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
         <IconButton  sx={{ p: '10px',color:"black" }} aria-label="directions">
-            <ShoppingBasketIcon />
+        <NavLink to="/cart" style={{textDecoration:"none",color:"black"}}>
+            <Badge badgeContent={cart?.length >=1 ? cart.length : null} color="primary">
+                    <ShoppingBasketIcon />
+            </Badge>
+        </NavLink>
         </IconButton>
    </Paper>
   )

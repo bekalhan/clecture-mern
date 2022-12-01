@@ -6,14 +6,17 @@ import {Avatar, Box, Button, Grid, Typography} from '@mui/material';
 import { Stack } from '@mui/system';
 import Badge from '@mui/material/Badge';
 import {NavLink} from 'react-router-dom';
+import {useCart} from '../context/cart';
+import toast from 'react-hot-toast';
 
 
 function Home() {
-    const [auth,setAuth] = useAuth();
     const [products,setProducts] = useState([]);
     const [total,setTotal] = useState(0);
     const [page,setPage] = useState(1);
     const [loading,setLoading] = useState(false);
+    //hook
+    const [cart,setCart] = useCart();
 
     useEffect(()=>{
       loadProducts();
@@ -54,6 +57,8 @@ function Home() {
         setLoading(false);
       }
     };
+
+    console.log("cart items :",cart);
 
 
 
@@ -99,7 +104,9 @@ function Home() {
                                View Product
                             </NavLink>
                           </Button>
-                          <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}}>Add to Cart</Button>
+                          <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}} onClick={()=>{setCart([...cart,product]);toast.success('Added to cart');localStorage.setItem("cart",JSON.stringify([...cart,product]))}}>
+                            Add to Cart
+                          </Button>
                       </Stack>
                     </Stack>
                 </Grid>
@@ -153,7 +160,7 @@ function Home() {
                       </Typography>
                       <Stack direction="row" sx={{paddingLeft:8,paddingRight:10,paddingTop:4}}>
                           <Button variant='contained' sx={{width:"50%"}}>View Product</Button>
-                          <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}}>Add to Cart</Button>
+                          <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}} onClick={()=>{setCart([...cart,product]);toast.success('Added to cart');localStorage.setItem("cart",JSON.stringify([...cart,product]))}}>Add to Cart</Button>
                       </Stack>
                     </Stack>
                 </Grid>

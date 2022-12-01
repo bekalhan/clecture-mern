@@ -5,11 +5,18 @@ import { useEffect } from 'react';
 import {Avatar, Box,Grid,Stack,Typography,Button,Badge} from '@mui/material';
 import DateFormatter from './utils/DateFormatter';
 import Loading from '../components/routes/Loading';
+import {useCart} from '../context/cart';
+import toast from 'react-hot-toast';
+
 
 function ProductView() {
     const [product,setProduct] = useState({});
 
     const params = useParams();
+
+    //hook
+    const [cart,setCart] = useCart();
+
 
     useEffect(()=>{
        loadProduct();
@@ -37,7 +44,7 @@ function ProductView() {
               <Grid container>
                     <Grid item lg={5} sx={{backgroundColor:""}}>
                         <Avatar variant='square' src={`http://localhost:8000/api/product/photo/${product[0]._id}`} sx={{width:"100%",height:"100%"}} />
-                        <Button variant='contained'sx={{width:"100%",marginTop:"1em"}} >Add to Cart</Button>
+                        <Button variant='contained'sx={{width:"100%",marginTop:"1em"}} onClick={()=>{setCart([...cart,product]);toast.success('Added to cart')}}>Add to Cart</Button>
                     </Grid>
                     <Grid item lg={5} sx={{}}>
                       <Stack direction="column">

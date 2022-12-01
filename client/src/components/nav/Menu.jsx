@@ -26,6 +26,7 @@ import Search from '../forms/Search';
 
 
 
+
 function Menu() {
     const [auth,setAuth] = useAuth();
     const navigate = useNavigate();
@@ -122,23 +123,23 @@ function Menu() {
          <Grid item lg={4} md={4} sm={4} sx={{backgroundColor:"",display:"flex",justifyContent:"flex-start",display:{lg:"flex",md:"flex",sm:"none",xs:"none"}}}>
              <Stack direction="row" sx={{marginTop:{lg:"3em",md:"2em"}}}>
                 <NavLink to="/shop" style={{textDecoration:"none",color:"black"}}>
-                 <Typography sx={{color:"black",marginLeft:{lg:"3em",md:"2em"},fontWeight:"bold"}}>Shop</Typography>
+                 <Typography sx={{color:"black",marginLeft:{lg:"3em",md:"2em"},fontWeight:"bold"}}>SHOP</Typography>
                  </NavLink>
                  <Stack direction="row">
                     <NavLink to="/" style={{textDecoration:"none",color:"black"}}>
-                        <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>Home</Typography>
+                        <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>HOME</Typography>
                     </NavLink>
                  </Stack>
                  {!auth?.user ? (
                  <Stack direction="row">
                          <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>
                          <NavLink to="/login" style={{textDecoration:"none",color:"black"}}>
-                             Login
+                             LOGIN
                          </NavLink>  
                      </Typography>
                      <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>
                          <NavLink to="/register" style={{textDecoration:"none",color:"black"}}>
-                             Register
+                             REGISTER
                          </NavLink>  
                      </Typography>
                  </Stack>
@@ -146,11 +147,11 @@ function Menu() {
                      <Stack direction="row">
                      <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>
                          <NavLink to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} style={{textDecoration:"none",color:"black"}}>
-                             {auth?.user.name}
+                             {auth?.user.name.toUpperCase()}
                          </NavLink>  
                      </Typography>
                       <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold",cursor:"pointer"}} onClick={()=>logOut()}>
-                             Logout
+                             LOGOUT
                      </Typography>
                      </Stack>
                  )}

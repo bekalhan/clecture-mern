@@ -10,6 +10,9 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import {NavLink} from 'react-router-dom';
+import {useCart} from '../context/cart';
+import toast from 'react-hot-toast';
+
 
 
 function Shop() {
@@ -17,6 +20,10 @@ function Shop() {
     const [products, setProducts] = useState([]);
     const [checked, setChecked] = useState([]); // categories
     const [radio, setRadio] = useState([]); // radio
+
+    //hook
+    const [cart,setCart] = useCart();
+
 
     useEffect(()=>{
         if(!checked.length || !radio.length){
@@ -154,7 +161,7 @@ function Shop() {
                                                     View Product
                                                     </NavLink>
                                                 </Button>
-                                              <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}}>Add to Cart</Button>
+                                              <Button variant='contained' sx={{width:"50%",marginLeft:"0.2em"}} onClick={()=>{setCart([...cart,product]);toast.success('Added to cart');localStorage.setItem("cart",JSON.stringify([...cart,product]))}}>Add to Cart</Button>
                                           </Stack>
                                         </Stack>
                                     </Grid>
