@@ -74,7 +74,7 @@ export const login = async (req,res)=>{
                 name:user.name,
                 email:user.email,
                 role:user.role,
-                adress : user.adress
+                address : user.address
             },
             token
         });
@@ -82,3 +82,39 @@ export const login = async (req,res)=>{
         console.log(err);
     }
 }
+
+export const updateProfile = async (req, res) => {
+    try {
+        console.log("girdii");
+      const { name, password, address } = req.body;
+      console.log("req body :",req.body);
+      const user = await User.findById(req.user._id);
+      console.log("find user : ",user);
+      // check password length
+      if (password && password.length < 6) {
+        return res.json({
+          error: "Password is required and should be min 6 characters long",
+        });
+      }
+
+      console.log("pass geçti");
+      // hash the password
+      const hashedPassword = password ? await hashPassword(password) : undefined;
+  
+      const updated = await User.findByIdAndUpdate(
+        req.user._id,
+        {
+          name: name || user.name,
+          password: hashedPassword || user.password,
+          address: address || user.address,
+        },
+        { new: true }
+      );
+  
+      updated.password = undefined;
+      res.json(updated);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
