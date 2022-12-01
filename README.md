@@ -25,6 +25,11 @@ _you can crud operations for category , product and see all list also you can se
 
 <img width="1419" alt="Screen Shot 2022-12-01 at 12 55 40" src="https://user-images.githubusercontent.com/77151270/205160304-b8535dec-2f5c-46d2-9719-0d87216b85a3.png">
 
+<img width="1435" alt="Screen Shot 2022-12-01 at 12 55 50" src="https://user-images.githubusercontent.com/77151270/205160727-2f690826-8aa9-4f3f-8856-046c41ae6fc3.png">
+
+<img width="1427" alt="Screen Shot 2022-12-01 at 12 56 38" src="https://user-images.githubusercontent.com/77151270/205160802-01f33588-2ba0-49d2-a662-4f78107f3d9a.png">
+
+
 
 
 
