@@ -11,6 +11,12 @@ _you can also filter courses and search courses_
 <img width="1429" alt="Screen Shot 2022-12-01 at 12 53 10" src="https://user-images.githubusercontent.com/77151270/205159590-bc3a4781-1807-4104-9f77-130552eb9704.png">
 
 
+_add cart functionality and payment page_
+
+<img width="1431" alt="Screen Shot 2022-12-01 at 12 55 11" src="https://user-images.githubusercontent.com/77151270/205159870-9bcfcae3-d01d-4c7c-9366-467eca3f4087.png">
+
+
+
 
 
 
