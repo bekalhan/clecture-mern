@@ -20,6 +20,7 @@ import Search from './pages/Search';
 import Shop from './pages/Shop';
 import ProductView from './pages/ProductView';
 import Cart from './pages/Cart';
+import Profile from './pages/user/Profile';
 
 function App() {
   const [auth,setAuth] = useAuth();
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path='/dashboard' element={<PrivateRoute />}>
                     <Route path='user' element={<Dashboard />} />
+                    <Route path='user/profile' element={<Profile/>} />
                 </Route>
                 <Route path='/dashboard' element={<AdminRoute />}>
                     <Route path="admin" element={<AdminDashboard />} />
@@ -68,6 +70,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path='/dashboard' element={<PrivateRoute />}>
               <Route path='user' element={<Dashboard />} />
+              <Route path='user/profile' element={<Profile/>} />
           </Route>
           <Route path='/dashboard' element={<AdminRoute />}>
               <Route path="admin" element={<AdminDashboard />} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     AppBar, Toolbar , Grid ,Stack, Typography ,Paper ,IconButton ,InputBase,
     Divider,Box, MenuItem, Avatar
@@ -23,13 +23,19 @@ import ShopIcon from '@mui/icons-material/Shop';
 import CategoryIcon from '@mui/icons-material/Category';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Search from '../forms/Search';
+import { useEffect } from 'react';
 
 
 
 
 function Menu() {
     const [auth,setAuth] = useAuth();
+    const [nav,setNav] = useState('');
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        navigateByRole(auth?.user?.role);
+    },[]);
 
     const logOut = () =>{
         localStorage.removeItem('auth');
@@ -37,6 +43,16 @@ function Menu() {
         toast.success('logout success');
         window.location.reload();
     }
+
+    const navigateByRole = (role) =>{
+        let path;
+       if(role===0){
+        path = '/dashboard/user/profile';
+       }else{
+        path = '/dashboard/admin';
+       }
+       setNav(path);
+    };
 
   return (
     <Box sx={{width:"100%"}}>
@@ -77,11 +93,11 @@ function Menu() {
                         <ListItem sx={{display:"flex",justifyContent:"center"}}>
                             <ListItemButton>
                                 <ListItemIcon>
-                                <NavLink to="/dashboard/admin2" style={{textDecoration:"none",color:"black"}}>  
+                                <NavLink to="/shop" style={{textDecoration:"none",color:"black"}}>  
                                     <ShopIcon />
                                 </NavLink>
                                 </ListItemIcon>
-                                <NavLink to="/dashboard/admin2" style={{textDecoration:"none",color:"black"}}>
+                                <NavLink to="/shop" style={{textDecoration:"none",color:"black"}}>
                                   <ListItemText primary="Shop" sx={{display:{lg:"block",md:"block",sm:"block",xs:"none"}}} />
                                 </NavLink>
                             </ListItemButton>
@@ -89,12 +105,12 @@ function Menu() {
                         <ListItem sx={{display:"flex",justifyContent:"center"}}>
                             <ListItemButton>
                                 <ListItemIcon>
-                                <NavLink to="/dashboard/admin2" style={{textDecoration:"none",color:"black"}}>  
+                                <NavLink to="/" style={{textDecoration:"none",color:"black"}}>  
                                     <CategoryIcon />
                                 </NavLink>
                                 </ListItemIcon>
-                            <NavLink to="/dashboard/admin2" style={{textDecoration:"none",color:"black"}}>  
-                                <ListItemText primary="Categories" sx={{display:{lg:"block",md:"block",sm:"block",xs:"none"}}} />
+                            <NavLink to="/" style={{textDecoration:"none",color:"black"}}>  
+                                <ListItemText primary="Home" sx={{display:{lg:"block",md:"block",sm:"block",xs:"none"}}} />
                             </NavLink>
                             </ListItemButton>
                         </ListItem>
@@ -146,7 +162,7 @@ function Menu() {
                  ):(
                      <Stack direction="row">
                      <Typography sx={{color:"black",marginLeft:{lg:"2em",md:"1em"},fontWeight:"bold"}}>
-                         <NavLink to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'}`} style={{textDecoration:"none",color:"black"}}>
+                         <NavLink to={nav} style={{textDecoration:"none",color:"black"}}>
                              {auth?.user.name.toUpperCase()}
                          </NavLink>  
                      </Typography>

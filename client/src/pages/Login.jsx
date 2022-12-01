@@ -30,8 +30,11 @@ function Login() {
                 localStorage.setItem("auth",JSON.stringify(data));
                 setAuth({...auth,token:data.token,user:data.user});
                 toast.success("Login success");
-                console.log("auth login :",auth);
-                navigate(`/dashboard/${data?.user?.role === 1 ? 'admin' : 'user'}`);
+                if(data?.user?.role ===1){
+                    navigate('/dashboard/admin')
+                }else{
+                    navigate('/cart');
+                }
             }
         }catch(err){
             toast.error("Login error try again");
